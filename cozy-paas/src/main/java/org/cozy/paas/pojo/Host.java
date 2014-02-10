@@ -1,14 +1,14 @@
 package org.cozy.paas.pojo;
 
 public class Host {
-	private String id;
+	private int id;
 	private int ip;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

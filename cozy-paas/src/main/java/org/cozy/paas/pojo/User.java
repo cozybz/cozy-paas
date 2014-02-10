@@ -1,15 +1,15 @@
 package org.cozy.paas.pojo;
 
 public class User {
-	private Long id;
+	private int id;
 	private String name;
 	private String password;
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
