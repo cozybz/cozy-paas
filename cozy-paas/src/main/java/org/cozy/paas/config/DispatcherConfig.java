@@ -15,14 +15,14 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"classpath:/WEB-INF/resources/");
+				"/WEB-INF/resources/");
 	}
 
 	@Bean
 	public InternalResourceViewResolver htmlViewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/pages");
-		viewResolver.setSuffix(".html");
+		viewResolver.setPrefix("/WEB-INF/pages/");
+		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 
 	}

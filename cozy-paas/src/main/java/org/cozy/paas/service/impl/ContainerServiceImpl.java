@@ -1,13 +1,17 @@
 package org.cozy.paas.service.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.cozy.paas.dao.ContainerDao;
 import org.cozy.paas.pojo.Container;
 import org.cozy.paas.service.ContainerService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ContainerServiceImpl implements ContainerService {
 
 	@Resource

@@ -1,13 +1,17 @@
 package org.cozy.paas.service.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.cozy.paas.dao.HostDao;
 import org.cozy.paas.pojo.Host;
 import org.cozy.paas.service.HostService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class HostServiceImpl implements HostService {
 
 	@Resource

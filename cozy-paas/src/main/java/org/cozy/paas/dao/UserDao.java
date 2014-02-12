@@ -20,6 +20,9 @@ public interface UserDao {
 	@Select("SELECT * FROM user WHERE id = #{id}")
 	public User selectById(int id);
 
+	@Select("SELECT * FROM user WHERE name = #{name}")
+	public User selectByName(String name);
+
 	@Select("SELECT * FROM user ORDER BY id ASC LIMIT #{start},#{pageSize}")
 	public List<User> selectByPageASC(int start, int pageSize);
 
