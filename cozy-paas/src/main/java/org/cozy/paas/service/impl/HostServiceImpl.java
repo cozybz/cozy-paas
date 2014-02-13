@@ -16,7 +16,7 @@ public class HostServiceImpl implements HostService {
 
 	@Resource
 	private HostDao hostDao;
-
+	
 	@Override
 	public int insert(Host host) {
 		return hostDao.insert(host);

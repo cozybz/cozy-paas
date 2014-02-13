@@ -2,7 +2,7 @@ package org.cozy.paas.pojo;
 
 public class Host {
 	private int id;
-	private int ip;
+	private String ip;
 
 	public int getId() {
 		return id;
@@ -12,11 +12,11 @@ public class Host {
 		this.id = id;
 	}
 
-	public int getIp() {
+	public String getIp() {
 		return ip;
 	}
 
-	public void setIp(int ip) {
+	public void setIp(String ip) {
 		this.ip = ip;
 	}
 

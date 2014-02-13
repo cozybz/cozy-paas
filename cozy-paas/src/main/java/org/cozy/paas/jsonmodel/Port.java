@@ -3,7 +3,7 @@ package org.cozy.paas.jsonmodel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Port {
-
+	
     @JsonProperty("PrivatePort")
     private long privatePort;
 

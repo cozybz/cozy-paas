@@ -8,7 +8,7 @@ public class ContainerInspectResponse {
 
     @JsonProperty("ID")
     private String id;
-
+    
     @JsonProperty("Created")
     private String created;
 
