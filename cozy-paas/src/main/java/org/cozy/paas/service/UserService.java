@@ -2,22 +2,22 @@ package org.cozy.paas.service;
 
 import java.util.List;
 
-import org.cozy.paas.pojo.User;
+import org.cozy.paas.pojo.UserDB;
 
 public interface UserService {
-	public int insert(User user);
+	public int insert(UserDB user);
 
 	public int delete(int id);
 
-	public int update(User user);
+	public int update(UserDB user);
 
-	public User selectById(int id);
+	public UserDB selectById(int id);
 	
-	public User selectByName(String name);
+	public UserDB selectByName(String name);
 
-	public List<User> selectByPageASC(int start, int pageSize);
+	public List<UserDB> selectByPageASC(int start, int pageSize);
 
-	public List<User> selectByPageDESC(int start, int pageSize);
+	public List<UserDB> selectByPageDESC(int start, int pageSize);
 
 	public int vertify(String name, String password);
 }

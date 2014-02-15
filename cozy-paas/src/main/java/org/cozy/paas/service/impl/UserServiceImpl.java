@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.cozy.paas.dao.UserDao;
-import org.cozy.paas.pojo.User;
+import org.cozy.paas.pojo.UserDB;
 import org.cozy.paas.service.UserService;
 import org.cozy.paas.tools.EncodeHelper;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public int insert(User user) {
+	public int insert(UserDB user) {
 		user.setPassword(EncodeHelper.encodeBySHA1(user.getPassword()));
 		return userDao.insert(user);
 	}
@@ -30,23 +30,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int update(User user) {
+	public int update(UserDB user) {
 		user.setPassword(EncodeHelper.encodeBySHA1(user.getPassword()));
 		return userDao.update(user);
 	}
 
 	@Override
-	public User selectById(int id) {
+	public UserDB selectById(int id) {
 		return userDao.selectById(id);
 	}
 
 	@Override
-	public List<User> selectByPageASC(int start, int pageSize) {
+	public List<UserDB> selectByPageASC(int start, int pageSize) {
 		return userDao.selectByPageASC(start, pageSize);
 	}
 
 	@Override
-	public List<User> selectByPageDESC(int start, int pageSize) {
+	public List<UserDB> selectByPageDESC(int start, int pageSize) {
 		return userDao.selectByPageDESC(start, pageSize);
 	}
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	public int vertify(String name, String password) {
 		if (name == "" || password == "")
 			return 0;
-		User u = userDao.selectByName(name);
+		UserDB u = userDao.selectByName(name);
 		if (u == null)
 			return 0;
 		if (!u.getPassword().equals(EncodeHelper.encodeBySHA1(password)))
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User selectByName(String name) {
+	public UserDB selectByName(String name) {
 		return userDao.selectByName(name);
 	}
 }

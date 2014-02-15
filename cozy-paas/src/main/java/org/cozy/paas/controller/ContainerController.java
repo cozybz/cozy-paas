@@ -1,6 +1,8 @@
 package org.cozy.paas.controller;
 
 import javax.annotation.Resource;
+
+import org.cozy.paas.model.ContainerCreateResponse;
 import org.cozy.paas.service.ContainerService;
 import org.cozy.paas.service.HostService;
 import org.cozy.paas.tools.DockerClient;
@@ -15,15 +17,21 @@ public class ContainerController {
 
 	@Resource
 	private HostService hostServiceImpl;
+	
+	@RequestMapping("createTomcat")
+	public String createTomcat(String ip,int userId,int memory){
+		return DockerClient.create(ip, "tomcat", memory);
+	}
 
 	@RequestMapping("/getAllContainers")
 	public String getAllContainers(String id, String ip) {
-		return DockerClient.getAllContainers(ip, id);
+		return "";
 	}
 
 	@RequestMapping("/getRunningContainers")
 	public String getRunningContainers(String id, String ip) {
-		return DockerClient.getRunningContainers(ip, id);
+		return "";//DockerClient.getRunningContainers(ip, id);
 	}
+	
 
 }

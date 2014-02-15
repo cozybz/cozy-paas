@@ -1,6 +1,6 @@
 package org.cozy.paas.pojo;
 
-public class Host {
+public class HostDB {
 	private int id;
 	private String ip;
 

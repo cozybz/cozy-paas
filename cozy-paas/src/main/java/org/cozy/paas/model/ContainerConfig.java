@@ -1,4 +1,4 @@
-package org.cozy.paas.jsonmodel;
+package org.cozy.paas.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 

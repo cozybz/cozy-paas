@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.cozy.paas.dao.ContainerDao;
-import org.cozy.paas.pojo.Container;
+import org.cozy.paas.pojo.ContainerDB;
 import org.cozy.paas.service.ContainerService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class ContainerServiceImpl implements ContainerService {
 	private ContainerDao containerDao;
 
 	@Override
-	public int insert(Container container) {
+	public int insert(ContainerDB container) {
 		return containerDao.insert(container);
 	}
 
@@ -28,22 +28,22 @@ public class ContainerServiceImpl implements ContainerService {
 	}
 
 	@Override
-	public int update(Container container) {
+	public int update(ContainerDB container) {
 		return containerDao.update(container);
 	}
 
 	@Override
-	public Container selectById(String id) {
+	public ContainerDB selectById(String id) {
 		return containerDao.selectById(id);
 	}
 
 	@Override
-	public List<Container> selectByPageASC(int start, int pageSize) {
+	public List<ContainerDB> selectByPageASC(int start, int pageSize) {
 		return containerDao.selectByPageASC(start, pageSize);
 	}
 
 	@Override
-	public List<Container> selectByPageDESC(int start, int pageSize) {
+	public List<ContainerDB> selectByPageDESC(int start, int pageSize) {
 		return containerDao.selectByPageDESC(start, pageSize);
 	}
 

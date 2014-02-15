@@ -1,19 +1,19 @@
 package org.cozy.paas.service;
 
 import java.util.List;
-import org.cozy.paas.pojo.Container;
+import org.cozy.paas.pojo.ContainerDB;
 
 public interface ContainerService {
 
-	public int insert(Container container);
+	public int insert(ContainerDB container);
 
 	public int delete(String id);
 
-	public int update(Container container);
+	public int update(ContainerDB container);
 
-	public Container selectById(String id);
+	public ContainerDB selectById(String id);
 
-	public List<Container> selectByPageASC(int start, int pageSize);
+	public List<ContainerDB> selectByPageASC(int start, int pageSize);
 
-	public List<Container> selectByPageDESC(int start, int pageSize);
+	public List<ContainerDB> selectByPageDESC(int start, int pageSize);
 }
