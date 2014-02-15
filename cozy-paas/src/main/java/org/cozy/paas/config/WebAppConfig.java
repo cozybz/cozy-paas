@@ -2,7 +2,6 @@ package org.cozy.paas.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +17,29 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("org.cozy.paas.service.impl")
 @MapperScan("org.cozy.paas.dao")
-@PropertySource("classpath:/org/cozy/paas/config/jdbc.properties")
+@PropertySource("classpath:jdbc.properties")
 @EnableTransactionManagement
 public class WebAppConfig {
 	@Autowired
 	private Environment env;
 
-	@Bean
+	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
-		PoolProperties p = new PoolProperties();
-		p.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-		p.setUrl(env.getProperty("jdbc.url"));
-		p.setName(env.getProperty("jdbc.username"));
-		p.setPassword(env.getProperty("jdbc.password"));
-		return new DataSource(p);
+		DataSource ds = new DataSource();
+		ds.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+		ds.setUrl(env.getProperty("jdbc.url"));
+		ds.setUsername(env.getProperty("jdbc.username"));
+		ds.setPassword(env.getProperty("jdbc.password"));
+		return ds;
 	}
-	
+
 	@Bean
-	public SqlSessionFactory sqlSessionFactory() throws Exception{
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
 		return factoryBean.getObject();
 	}
-	
+
 	@Bean
 	public PlatformTransactionManager txManager() {
 		return new DataSourceTransactionManager(dataSource());

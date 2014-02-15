@@ -51,16 +51,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int vertify(String name, String password) {
+	public UserDB vertify(String name, String password) {
 		if (name == "" || password == "")
-			return 0;
+			return null;
 		UserDB u = userDao.selectByName(name);
 		if (u == null)
-			return 0;
+			return null;
 		if (!u.getPassword().equals(EncodeHelper.encodeBySHA1(password)))
-			return 0;
-
-		return 1;
+			return u;
+		return null;
 	}
 
 	@Override

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
-<link rel="stylesheet" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" href="${request.contextPath}/resources/css/bootstrap.css">
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -56,8 +56,8 @@
 		</div>
 	</div>
 
-	<script src="/resources/js/jquery-2.1.0.js"></script>
-	<script src="/resources/js/bootstrap.js"></script>
+	<script src="${request.contextPath}/resources/js/jquery-2.1.0.js"></script>
+	<script src="${request.contextPath}/resources/js/bootstrap.js"></script>
 
 	<script>
 		$(function() {

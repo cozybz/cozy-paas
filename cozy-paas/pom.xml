@@ -54,6 +54,7 @@
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>7.0.50</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.eclipse.jetty.orbit</groupId>
 			<artifactId>javax.servlet</artifactId>

@@ -19,5 +19,5 @@ public interface UserService {
 
 	public List<UserDB> selectByPageDESC(int start, int pageSize);
 
-	public int vertify(String name, String password);
+	public UserDB vertify(String name, String password);
 }

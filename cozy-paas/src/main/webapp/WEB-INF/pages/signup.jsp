@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>login</title>
+<title>signup</title>
 <link rel="stylesheet" href="${request.contextPath}/resources/css/bootstrap.css">
 <link rel="stylesheet" href="${request.contextPath}/resources/css/cozy.css">
 </head>
@@ -13,15 +13,16 @@
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title content-title">Login</h3>
+					<h3 class="panel-title content-title">Sign up</h3>
 				</div>
 				<div class="panel-body top-20">
 					<!-- content start-->
-					<form action="${request.contextPath}/login" class="form-horizontal" role="form">
+					<form action="${request.contextPath}/signupdo"
+						class="form-horizontal" role="form">
 						<div class="form-group">
-							<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 							<div class="col-sm-10">
-								<input name="name" type="email" class="form-control" id="inputEmail"
+								<input name="name" type="email" class="form-control" id="inputEmail3"
 									placeholder="Email">
 							</div>
 						</div>
