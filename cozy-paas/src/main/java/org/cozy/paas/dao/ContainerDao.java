@@ -21,6 +21,15 @@ public interface ContainerDao {
 	@Select("SELECT * FROM container WHERE id = #{id}")
 	public ContainerDB selectById(String id);
 
+	@Select("SELECT * FROM container")
+	public List<ContainerDB> selectAll();
+
+	@Select("SELECT * FROM container WHERE hostId = #{hostId}")
+	public List<ContainerDB> selectByHostId(int hostId);
+
+	@Select("SELECT * FROM container WHERE userId = #{userId}")
+	public List<ContainerDB> selectByUserId(int userId);
+
 	@Select("SELECT * FROM container ORDER BY id ASC LIMIT #{start},#{pageSize}")
 	public List<ContainerDB> selectByPageASC(int start, int pageSize);
 

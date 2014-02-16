@@ -1,9 +1,7 @@
 package org.cozy.paas.service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.cozy.paas.dao.ContainerDao;
 import org.cozy.paas.pojo.ContainerDB;
 import org.cozy.paas.service.ContainerService;
@@ -45,6 +43,21 @@ public class ContainerServiceImpl implements ContainerService {
 	@Override
 	public List<ContainerDB> selectByPageDESC(int start, int pageSize) {
 		return containerDao.selectByPageDESC(start, pageSize);
+	}
+
+	@Override
+	public List<ContainerDB> selectByUserId(int userId) {
+		return containerDao.selectByUserId(userId);
+	}
+
+	@Override
+	public List<ContainerDB> selectByHostId(int hostId) {
+		return containerDao.selectByHostId(hostId);
+	}
+
+	@Override
+	public List<ContainerDB> selectAll() {
+		return containerDao.selectAll();
 	}
 
 }

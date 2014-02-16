@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>signup</title>
-<link rel="stylesheet" href="${request.contextPath}/resources/css/bootstrap.css">
-<link rel="stylesheet" href="${request.contextPath}/resources/css/cozy.css">
+<link rel="stylesheet"
+	href="${request.contextPath}/resources/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${request.contextPath}/resources/css/cozy.css">
 </head>
 <body>
 
@@ -17,20 +19,20 @@
 				</div>
 				<div class="panel-body top-20">
 					<!-- content start-->
-					<form action="${request.contextPath}/signupdo"
+					<form action="${request.contextPath}/signupdo" method="post"
 						class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 							<div class="col-sm-10">
-								<input name="name" type="email" class="form-control" id="inputEmail3"
-									placeholder="Email">
+								<input name="name" type="email" class="form-control"
+									id="inputEmail3" placeholder="Email">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword" class="col-sm-2 control-label">Password</label>
 							<div class="col-sm-10">
-								<input name="password" type="password" class="form-control" id="inputPassword"
-									placeholder="Password">
+								<input name="password" type="password" class="form-control"
+									id="inputPassword" placeholder="Password">
 							</div>
 						</div>
 						<div class="form-group">

@@ -14,9 +14,9 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">UserName<b class="caret"></b></a>
+					data-toggle="dropdown">${sessionScope.name}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Log out</a></li>
+						<li><a href="logout">Log out</a></li>
 					</ul></li>
 			</ul>
 		</div>
