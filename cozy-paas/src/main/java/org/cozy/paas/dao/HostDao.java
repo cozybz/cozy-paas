@@ -19,6 +19,9 @@ public interface HostDao {
 
 	@Select("SELECT * FROM host WHERE id = #{id}")
 	public HostDB selectById(int id);
+	
+	@Select("SELECT * FROM host")
+	public List<HostDB> selectAll();
 
 	@Select("SELECT * FROM host ORDER BY id ASC LIMIT #{start},#{pageSize}")
 	public List<HostDB> selectByPageASC(int start, int pageSize);

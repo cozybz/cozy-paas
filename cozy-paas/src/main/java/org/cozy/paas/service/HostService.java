@@ -12,6 +12,8 @@ public interface HostService {
 
 	public HostDB selectById(int id);
 
+	public List<HostDB> selectAll();
+
 	public List<HostDB> selectByPageASC(int start, int pageSize);
 
 	public List<HostDB> selectByPageDESC(int start, int pageSize);

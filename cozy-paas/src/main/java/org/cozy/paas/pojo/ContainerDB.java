@@ -3,7 +3,7 @@ package org.cozy.paas.pojo;
 public class ContainerDB {
 	private String id;
 	private Long memory;
-	private String description;
+	private String name;
 	private int status;
 	private int hostId;
 	private int userId;
@@ -25,12 +25,12 @@ public class ContainerDB {
 		this.memory = memory;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getId() {

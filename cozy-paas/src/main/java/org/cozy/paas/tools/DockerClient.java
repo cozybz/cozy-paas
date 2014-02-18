@@ -10,6 +10,7 @@ import java.net.URL;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.cozy.paas.model.ContainerConfig;
+import org.cozy.paas.model.ContainerCreateResponse;
 import org.cozy.paas.model.HostConfig;
 
 public class DockerClient {
@@ -19,17 +20,20 @@ public class DockerClient {
 		return get("http://" + ip + "/containers/" + id + "/json");
 	}
 
-	public static String create(String ip, String image, Long memory) {
+	public static ContainerCreateResponse create(String ip, String image,
+			Long memory) {
 		ContainerConfig c = new ContainerConfig();
-		String result = null;
+		ContainerCreateResponse result = null;
 		c.setImage(image);
 		c.setMemoryLimit(memory);
 		try {
-			result = post("http://" + ip + "/containers/create",
+			String s = post("http://" + ip + "/containers/create",
 					mapper.writeValueAsString(c));
+			result = mapper.readValue(s, ContainerCreateResponse.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return result;
 	}
 

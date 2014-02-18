@@ -1,21 +1,24 @@
 package org.cozy.paas.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.cozy.paas.pojo.ContainerDB;
 
 public interface ContainerDao {
 
-	@Insert("INSERT INTO container (id,userId,hostId) VALUES (#{id},#{userId},#{hostId})")
+	@Insert("INSERT INTO container (id,userId,hostId,name,memory,status) VALUES (#{id},#{userId},#{hostId},#{name},#{memory},#{status})")
+	@Options(useGeneratedKeys = true, keyColumn = "id")
 	public int insert(ContainerDB container);
 
 	@Delete("DELETE FROM container WHERE id = #{id}")
 	public int delete(String id);
 
-	@Update("UPDATE container SET hostId = #{hostId},userId = #{userId} WHERE id = #{id}")
+	@Update("UPDATE container SET hostId = #{hostId},userId = #{userId},name = #{name}, memory = #{memory},status = #{status} WHERE id = #{id}")
 	public int update(ContainerDB container);
 
 	@Select("SELECT * FROM container WHERE id = #{id}")

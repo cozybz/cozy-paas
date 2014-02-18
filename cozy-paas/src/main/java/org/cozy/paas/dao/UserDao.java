@@ -1,14 +1,17 @@
 package org.cozy.paas.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.cozy.paas.pojo.UserDB;
 
 public interface UserDao {
 	@Insert("INSERT INTO user (id,name,password) VALUES (#{id},#{name},#{password})")
+	@Options(useGeneratedKeys = true, keyColumn = "id")
 	public int insert(UserDB user);
 
 	@Delete("DELETE FROM user WHERE id = #{id}")

@@ -16,7 +16,7 @@ public class HostServiceImpl implements HostService {
 
 	@Resource
 	private HostDao hostDao;
-	
+
 	@Override
 	public int insert(HostDB host) {
 		return hostDao.insert(host);
@@ -45,6 +45,11 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public List<HostDB> selectByPageDESC(int start, int pageSize) {
 		return hostDao.selectByPageDESC(start, pageSize);
+	}
+
+	@Override
+	public List<HostDB> selectAll() {
+		return hostDao.selectAll();
 	}
 
 }

@@ -55,9 +55,7 @@ public class UserServiceImpl implements UserService {
 		if (name == "" || password == "")
 			return null;
 		UserDB u = userDao.selectByName(name);
-		if (u == null)
-			return null;
-		if (!u.getPassword().equals(EncodeHelper.encodeBySHA1(password)))
+		if (u!=null && u.getPassword().equals(EncodeHelper.encodeBySHA1(password)))
 			return u;
 		return null;
 	}

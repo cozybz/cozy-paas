@@ -23,11 +23,11 @@ public class IndexController {
 	}
 
 	@RequestMapping("/login")
-	public void login(String name, String password,
-			HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
+	public void login(String name, String password, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		UserDB user = null;
-		if ((user = userServiceImpl.vertify(name, password)) != null) {
+		if (name != "" && password != null
+				&& (user = userServiceImpl.vertify(name, password)) != null) {
 			request.getSession().setAttribute("name", user.getName());
 			request.getSession().setAttribute("id", user.getId());
 		}
@@ -42,7 +42,9 @@ public class IndexController {
 	@RequestMapping("/signupdo")
 	public void signupdo(UserDB user, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		if (userServiceImpl.selectByName(user.getName()) == null) {
+		if (user != null && user.getName() != null
+				&& user.getPassword() != null
+				&& userServiceImpl.selectByName(user.getName()) == null) {
 			userServiceImpl.insert(user);
 			request.getSession().setAttribute("name", user.getName());
 			request.getSession().setAttribute("id", user.getId());
@@ -56,5 +58,15 @@ public class IndexController {
 		request.getSession().removeAttribute("id");
 		request.getSession().removeAttribute("name");
 		response.sendRedirect("login");
+	}
+
+	@RequestMapping("/Container")
+	public String Container() {
+		return "containerlist";
+	}
+
+	@RequestMapping("/Host")
+	public String Host() {
+		return "hostlist";
 	}
 }
