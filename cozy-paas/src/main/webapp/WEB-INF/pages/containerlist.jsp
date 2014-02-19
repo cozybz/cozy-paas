@@ -31,7 +31,7 @@
 		function loadContainerList(){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/container/selectAll',
+				url : '${request.contextPath}/paas/container/selectAll',
 				data : null,
 				dataType : 'json',
 				success : function(data) {
@@ -75,7 +75,7 @@
 		function startContainer(id){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/container/'+id+'/start',
+				url : '${request.contextPath}/paas/container/'+id+'/start',
 				success : function(data) {
 					loadContainerList();
 				}
@@ -84,7 +84,7 @@
 		function stopContainer(id){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/container/'+id+'/stop',
+				url : '${request.contextPath}/paas/container/'+id+'/stop',
 				success : function(data) {
 					loadContainerList();
 				}
@@ -93,7 +93,7 @@
 		function deleteContainer(id){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/container/'+id+'/delete',
+				url : '${request.contextPath}/paas/container/'+id+'/delete',
 				success : function(data) {
 					loadContainerList();
 				}

@@ -19,7 +19,7 @@
 				</div>
 				<div class="panel-body top-20">
 					<!-- content start-->
-					<form action="${request.contextPath}/login" method="post"
+					<form action="${request.contextPath}/logindo" method="post"
 						class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="inputEmail" class="col-sm-2 control-label">Email</label>

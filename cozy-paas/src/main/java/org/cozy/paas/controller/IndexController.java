@@ -15,28 +15,32 @@ public class IndexController {
 	@Resource
 	private UserService userServiceImpl;
 
-	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
-		if (request.getSession().getAttribute("id") == null)
-			return "login";
+	@RequestMapping("/paas/index")
+	public String index() {
 		return "index";
 	}
 
 	@RequestMapping("/login")
-	public void login(String name, String password, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public String login() {
+		return "login";
+	}
+
+	@RequestMapping("/signup")
+	public String signup() {
+		return "signup";
+	}
+
+	@RequestMapping("/logindo")
+	public void logindo(String name, String password,
+			HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		UserDB user = null;
 		if (name != "" && password != null
 				&& (user = userServiceImpl.vertify(name, password)) != null) {
 			request.getSession().setAttribute("name", user.getName());
 			request.getSession().setAttribute("id", user.getId());
 		}
-		response.sendRedirect("index");
-	}
-
-	@RequestMapping("/signup")
-	public String signup() {
-		return "signup";
+		response.sendRedirect("/paas/index");
 	}
 
 	@RequestMapping("/signupdo")
@@ -49,7 +53,7 @@ public class IndexController {
 			request.getSession().setAttribute("name", user.getName());
 			request.getSession().setAttribute("id", user.getId());
 		}
-		response.sendRedirect("index");
+		response.sendRedirect("/paas/index");
 	}
 
 	@RequestMapping("/logout")
@@ -60,13 +64,13 @@ public class IndexController {
 		response.sendRedirect("login");
 	}
 
-	@RequestMapping("/Container")
-	public String Container() {
+	@RequestMapping("/paas/containerlist")
+	public String containerlist() {
 		return "containerlist";
 	}
 
-	@RequestMapping("/Host")
-	public String Host() {
+	@RequestMapping("/paas/hostlist")
+	public String hostlist() {
 		return "hostlist";
 	}
 }

@@ -33,8 +33,8 @@
 				</div>
 				<div class="panel-body">
 					<ul class="nav nav-pills nav-stacked">
-						<li><a href="#">Container</a></li>
-						<li><a href="#">Host</a></li>
+						<li><a name="containerlist">Container</a></li>
+						<li><a name="hostlist">Host</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 			$(".nav-pills>li").click(function() {
 				$(this).addClass("active").siblings().removeClass("active");
 				$(".content-title").text($(this).children("a").text());
-				$(".main-content").load('${request.contextPath}'+"/"+$(this).children("a").text())
+				$(".main-content").load('${request.contextPath}/paas/'+$(this).children("a").attr("name"));
 			});
 		});
 	</script>

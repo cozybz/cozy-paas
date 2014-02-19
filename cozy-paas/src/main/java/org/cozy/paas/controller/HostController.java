@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/host")
+@RequestMapping("/paas/host")
 public class HostController {
 	@Resource
 	private HostService hostServiceImpl;

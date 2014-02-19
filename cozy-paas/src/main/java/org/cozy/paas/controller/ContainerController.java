@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/container")
+@RequestMapping("/paas/container")
 public class ContainerController {
 
 	@Resource

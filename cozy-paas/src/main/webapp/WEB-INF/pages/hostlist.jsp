@@ -53,7 +53,7 @@
 		function loadHostList(){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/host/selectAll',
+				url : '${request.contextPath}/paas/host/selectAll',
 				data : null,
 				dataType : 'json',
 				success : function(data) {
@@ -92,7 +92,7 @@
 		function createContainer(c){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/container/create',
+				url : '${request.contextPath}/paas/container/create',
 				contentType: 'application/json',
 			    mimeType: 'application/json',
 				data : JSON.stringify(c),
@@ -105,7 +105,7 @@
 		function addHost(c){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/host/insert',
+				url : '${request.contextPath}/paas/host/insert',
 				contentType: 'application/json',
 			    mimeType: 'application/json',
 				data : JSON.stringify(c),
@@ -119,7 +119,7 @@
 		function deleteHost(id){
 			$.ajax({
 				type : 'POST',
-				url : '${request.contextPath}/host/'+id+'/delete',
+				url : '${request.contextPath}/paas/host/'+id+'/delete',
 				success : function(data) {
 					loadHostList();
 					$('#myModal').modal('hide');
