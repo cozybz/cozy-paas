@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.cozy.paas.model.ContainerCreateResponse;
+import org.cozy.paas.model.ContainerInspectResponse;
 import org.cozy.paas.pojo.ContainerDB;
 import org.cozy.paas.pojo.HostDB;
 import org.cozy.paas.service.ContainerService;
@@ -27,13 +28,14 @@ public class ContainerController {
 	private HostService hostServiceImpl;
 
 	@RequestMapping("/create")
-	public int create(@RequestBody ContainerDB c,HttpSession session) {
+	public int create(@RequestBody ContainerDB c, HttpSession session) {
 		HostDB host = hostServiceImpl.selectById(c.getHostId());
-		ContainerCreateResponse resp = DockerClient.create(host.getIp(), c.getName(), c.getMemory());
+		ContainerCreateResponse resp = DockerClient.create(host.getIp(),
+				c.getName(), c.getMemory());
 		c.setId(resp.getId());
-		c.setUserId((int)session.getAttribute("id"));
+		c.setUserId((int) session.getAttribute("id"));
 		return containerServiceImpl.insert(c);
-		
+
 	}
 
 	@RequestMapping("/{id}/start")
@@ -60,6 +62,13 @@ public class ContainerController {
 		String ip = hostServiceImpl.selectById(c.getHostId()).getIp();
 		containerServiceImpl.delete(id);
 		return DockerClient.deleteContainer(ip, id);
+	}
+
+	@RequestMapping("/{id}/info")
+	public ContainerInspectResponse info(@PathVariable String id) {
+		ContainerDB c = containerServiceImpl.selectById(id);
+		String ip = hostServiceImpl.selectById(c.getHostId()).getIp();
+		return DockerClient.inspect(ip, id);
 	}
 
 	@RequestMapping("/selectAll")

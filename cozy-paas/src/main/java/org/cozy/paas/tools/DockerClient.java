@@ -11,13 +11,21 @@ import java.net.URL;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.cozy.paas.model.ContainerConfig;
 import org.cozy.paas.model.ContainerCreateResponse;
+import org.cozy.paas.model.ContainerInspectResponse;
 import org.cozy.paas.model.HostConfig;
 
 public class DockerClient {
 	private static final ObjectMapper mapper = new ObjectMapper();
 
-	public static String inspect(String ip, String id) {
-		return get("http://" + ip + "/containers/" + id + "/json");
+	public static ContainerInspectResponse inspect(String ip, String id) {
+		ContainerInspectResponse result = new ContainerInspectResponse();
+		try {
+			String s = get("http://" + ip + "/containers/" + id + "/json");
+			result = mapper.readValue(s, ContainerInspectResponse.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public static ContainerCreateResponse create(String ip, String image,

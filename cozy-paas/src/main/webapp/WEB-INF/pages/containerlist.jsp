@@ -47,7 +47,7 @@
 							$s.text('stop');
 						}
 						var $td = $('<td/>').append($i,' ',$d);
-						$('<tr>').append($('<td/>').append($('<li/>').addClass('li-ellipsis').text(item.id)),
+						$('<tr>').append($('<td/>').attr('name',item.id).text(item.id.substr(0,25)+'...'),
 								$('<td/>').text(item.name),
 								$('<td/>').text(item.memory),
 								$('<td/>').append($s),
@@ -56,7 +56,7 @@
 					});
 					
 					$('button').click(function(){
-						var id = $(this).parent().siblings().eq(0).text();
+						var id = $(this).parent().siblings().eq(0).attr('name');
 						switch($(this).text()){
 						case 'info' :
 							getContainerinfo(id);break;
@@ -99,8 +99,48 @@
 				}
 			});
 		}
-		function getContainerinfo(c){
-			
+		function getContainerinfo(id){
+			$.ajax({
+				type : 'POST',
+				url : '${request.contextPath}/paas/container/'+id+'/info',
+				success : function(data) {
+					$('table').remove();
+					
+					var $ContainerID = $('<tr/>').append($('<td/>').text('ContainerID'),$('<td/>').text(data.ID.substr(0,25)+'...'));
+					var $Image = $('<tr/>').append($('<td/>').text('Image'),$('<td/>').text(data.Config.Image));
+					var $CPU = $('<tr/>').append($('<td/>').text('CPU'),$('<td/>').text(data.Config.CpuShares));
+					var $Memory = $('<tr/>').append($('<td/>').text('Memory'),$('<td/>').text(data.Config.Memory));
+					var $table1 = $('<div/>').addClass('col-md-6').append($('<table/>').addClass('table table-bordered table-hover').append($ContainerID,$Image,$CPU,$Memory));
+					
+					var $IPAddress = $('<tr/>').append($('<td/>').text('IPAddress'),$('<td/>').text(data.NetworkSettings.IPAddress));
+					var $Hostname = $('<tr/>').append($('<td/>').text('Hostname'),$('<td/>').text(data.Config.Hostname));
+					var $Gateway = $('<tr/>').append($('<td/>').text('Gateway'),$('<td/>').text(data.NetworkSettings.Gateway));
+					var $Bridge = $('<tr/>').append($('<td/>').text('Bridge'),$('<td/>').text(data.NetworkSettings.Bridge));
+					var $table2 = $('<div/>').addClass('col-md-6').append($('<table/>').addClass('table table-bordered table-hover').append($IPAddress,$Hostname,$Gateway,$Bridge));
+					
+					$('.main-content').append($table1,$table2);
+					
+					var Ports = data.NetworkSettings.Ports;
+					var trs = new Array();
+					for(key in Ports){
+						for(i in Ports[key]){
+							var $tr = $('<tr/>').append($('<td/>').text(key),$('<td/>').text(Ports[key][i].HostIp+':'+Ports[key][i].HostPort));
+							trs.push($tr);
+						}
+					}
+					var $table3 = $('<div/>').addClass('col-md-6').append($('<div/>').addClass('panel panel-info').append($('<div/>').addClass('panel-heading').text('Ports'),$('<div/>').addClass('panel-body').append($('<table/>').addClass('table table-hover').append($('<thead/>').append($('<tr/>').append($('<td/>').text('Port'),$('<td/>').text('Mapping'))),$('<tbody/>').append(trs)))));
+					
+					trs = [];
+					for(i in data.Config.Env){
+						var $tr = $('<tr/>').append($('<td/>').text(data.Config.Env[i].split('=')[0]),$('<td/>').attr('style','word-wrap:break-word; word-break:break-all;').text(data.Config.Env[i].split('=')[1]));
+						trs.push($tr);
+					}
+					
+					var $table4 = $('<div/>').addClass('col-md-6').append($('<div/>').addClass('panel panel-info').append($('<div/>').addClass('panel-heading').text('Environment'),$('<div/>').addClass('panel-body').append($('<table/>').addClass('table table-hover').append($('<thead/>').append($('<tr/>').append($('<td/>').text('Key'),$('<td/>').text('Value'))),$('<tbody/>').append(trs)))));
+					
+					$('.main-content').append($table1,$table2,$table3,$table4);
+				}
+			});
 		}
 	</script>
 </body>
