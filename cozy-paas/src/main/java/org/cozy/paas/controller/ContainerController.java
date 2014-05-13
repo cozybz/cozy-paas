@@ -33,7 +33,7 @@ public class ContainerController {
 		ContainerCreateResponse resp = DockerClient.create(host.getIp(),
 				c.getName(), c.getMemory());
 		c.setId(resp.getId());
-		c.setUserId((int) session.getAttribute("id"));
+		c.setUserId(Integer.parseInt(session.getAttribute("id").toString()));
 		return containerServiceImpl.insert(c);
 
 	}

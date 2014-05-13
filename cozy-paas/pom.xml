@@ -9,7 +9,6 @@
 	<description>A PAAS platform based on docker</description>
 
 	<properties>
-		<jettyVersion>9.1.1.v20140108</jettyVersion>
 		<springVersion>4.0.0.RELEASE</springVersion>
 	</properties>
 
@@ -68,14 +67,27 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jettyVersion}</version>
+				<version>9.1.5.v20140505</version>
 				<configuration>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<contextPath>/</contextPath>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
-				<configuration> <failOnMissingWebXml>false</failOnMissingWebXml> </configuration> 
-				</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
